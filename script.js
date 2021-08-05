@@ -1,10 +1,12 @@
+// Query Seletor
+let form = document.querySelector('#card');
+let searchBtn = document.querySelector('#searchBtn');
+let searchUser = document.querySelector('#searchUser');
 
-var form = document.querySelector('#card');
-var searchBtn = document.querySelector('#searchBtn');
-var searchUser = document.querySelector('#searchUser');
+let ui = new UI();
 
-var ui = new UI();
 
+// Add Event Listener
 form.addEventListener('submit', (e) => {
     let userText = searchUser.value;
 
@@ -13,10 +15,10 @@ form.addEventListener('submit', (e) => {
             .then(response => response.json())
             .then(data => {
                 if(data.message === 'Not Found') {
-                    // show alert
-                    ui.showAlert('alert alert-danger');
+                    // Show alert
+                    ui.showAlert('User not found','error');
                 } else {
-                    // show profile
+                    // Show profile
                     console.log(data);
                     ui.showProfile(data);
                 }
@@ -25,6 +27,7 @@ form.addEventListener('submit', (e) => {
                 console.log(err);
             })
     } else {
+        // Clear Profile
         ui.clearProfile();
     }
 
